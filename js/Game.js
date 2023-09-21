@@ -1,7 +1,7 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
+/* Game section of project that holds main game processes
  * Game.js */
 
+//Game class with constructor that creates an array of phrases that will be used
 class Game {
     constructor() {
         this.missed = 0;
@@ -15,6 +15,7 @@ class Game {
         this.activePhrase = null;
     }
 
+    //Method that hides the main screen overlay once start button is clicked and sets the active phrase to a random selected one
     startGame() {
         const overlay = document.getElementById('overlay')
         overlay.style.display = 'none';
@@ -22,10 +23,13 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
     }
 
+    //Method that returns a random chosen phrase from the phrases array
     getRandomPhrase() {
         return this.phrases[Math.floor(Math.random() * this.phrases.length)];
     }
 
+    /*Handles the cross interaction between the two classes and the app.js section
+    Calls created methods from both classes based of what buttons are clicked on the on screen keyboard*/
     handleInteraction(button) {
         button.disabled = true;
         const buttonLetter = button.textContent;
@@ -43,6 +47,7 @@ class Game {
         }
     }
 
+    //Method that updates missed count and changes heart images to lost heart image when wrong selection is made
     removeLife() {
         const heartImg = document.querySelectorAll('.tries img');
 
@@ -56,6 +61,7 @@ class Game {
         }
     }
 
+    //Method checks for either a win or loss depending on how many letters are still hidden
     checkForWin() {
         const hidden = document.querySelectorAll('.hidden');
         if(hidden.length === 0) {
@@ -65,6 +71,7 @@ class Game {
         }
     }
 
+    //Method that displays message and changes screen background depending on win or loss for the player
     gameOver(gameWon) {
         const overlay = document.getElementById('overlay')
         const message = document.getElementById('game-over-message')

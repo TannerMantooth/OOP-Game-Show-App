@@ -1,12 +1,13 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
+/* Phrase section of project that contains main methods that involve phrase manipulation
  * Phrase.js */
 
+//Phase class that uses a constructor to convert phases from game.phases array to all lower case
 class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
     }
     
+    //Method that adds the chosen random phrase to the display by adding list elements to the unordered list
     addPhraseToDisplay() {
         const pDiv = document.getElementById('phrase');
         const pUl = pDiv.firstElementChild;
@@ -23,10 +24,12 @@ class Phrase {
         }
     }
 
+    //Method that checks if current active phrase contains the letter that was selected by the player
     checkLetter(letter) {
         return this.phrase.includes(letter);
     }
 
+    //Method that makes letter visisble on screen if the correct letter was guess by player
     showMatchedLetter(letter) {
         const letters = document.getElementsByClassName(letter);
 
