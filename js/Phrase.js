@@ -9,25 +9,30 @@ class Phrase {
     
     addPhraseToDisplay() {
         const pDiv = document.getElementById('phrase');
-        const pUl = document.querySelector('ul');
+        const pUl = pDiv.firstElementChild;
 
         for(let i = 0; i < this.phrase.length; i++) {
             const li = document.createElement('li');
             if(this.phrase[i] === ' ') {
-                li.className = 'space';
+                li.classList.add('space');
             } else {
-                li.className = `hide letter ${this.phrase[i]}`;
+                li.classList.add('hidden', 'letter', this.phrase[i]);
                 li.textContent = this.phrase[i];
             }
             pUl.appendChild(li);
         }
     }
 
-    checkLetter() {
-
+    checkLetter(letter) {
+        return this.phrase.includes(letter);
     }
 
-    showMatchedLetter() {
+    showMatchedLetter(letter) {
+        const letters = document.getElementsByClassName(letter);
 
+        for(let i = 0; i < letters.length; i++) {
+            letters[i].classList.remove('hidden');
+            letters[i].classList.add('show');
+        }
     }
 }
